@@ -23,6 +23,13 @@ $app->get('/telas', function () use ($app) {
   $app->response()->json($telas);
 });
 
+$app->get('/telas/{id}', function ($id) use ($app) {
+  $tela = $app->db()
+    ->query("SELECT * FROM tela WHERE id = ?")
+    ->bind($id)
+    ->first();
 
+  $app->response()->json($tela);
+});
 
 $app->run();
